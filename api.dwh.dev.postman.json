@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "",
+		"name": "api.dwh.dev postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29379752"
+	},
+	"item": [
+		{
+			"name": "Project Management",
+			"item": [
+				{
+					"name": "Project List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/project/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/project/{{project-uuid}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"{{project-uuid}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project\": {\n        \"name\": \"projectName\"\n    },\n    \"vendor\": \"snowflake\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/project/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project\": {\n        \"uuid\": \"{{project-uuid}}\"\n    },\n    \"user\": {\n        \"to\": {\n            \"name\": null\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/project/change-ownership/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"change-ownership",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Share",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project\": {\n        \"uuid\": \"{{project-uuid}}\"\n    },\n    \"user\": {\n        \"to\": [\n            {\n                \"name\": \"dwhdev username (email)\"\n            }\n        ]   \n    },\n    \"permissions\": [\"PROJECT:VIEW\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/project/share/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"share",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DDL Management",
+			"item": [
+				{
+					"name": "DDL Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"database\": {\n    \"uuid\": \"{{database-uuid}}\",\n    \"environment\": \"development\",\n    \"branch\": {\n      \"name\": \"main\"\n    }\n  },\n  \"source\": \"CREATE TABLE t1(ID INT, NAME STRING);\",\n  \"filetype\": \"SQL\",\n  \"details\": null,\n  \"type\": \"GET_DDL\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/ddl/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ddl",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DDL Parsing status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/ddl/source/{{source-uuid}}/status",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ddl",
+								"source",
+								"{{source-uuid}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DBT Management",
+			"item": [
+				{
+					"name": "DBT Manifest Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"database\": {\n    \"uuid\": \"{{database-uuid}}\",\n    \"environment\": \"development\",\n    \"branch\": {\n      \"name\": \"main\"\n    }\n  },\n  \"source\": \"dbt compile manifest.json\",\n  \"type\": \"MANIFEST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/ddl/dbt/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ddl",
+								"dbt",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DBT Manifest Parsing status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.dwh.dev/api/v1/ddl/dbt/{{dbt-uuid}}/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dwh",
+								"dev"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ddl",
+								"dbt",
+								"{{dbt-uuid}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "x-api-key",
+			"value": ""
+		},
+		{
+			"key": "project-uuid",
+			"value": ""
+		},
+		{
+			"key": "database-uuid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "source-uuid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "dbt-uuid",
+			"value": ""
+		}
+	]
+}
